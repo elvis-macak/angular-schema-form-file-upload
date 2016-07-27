@@ -35,7 +35,7 @@ angular.module('schemaForm').directive('onReadFile', ['$http', function ($http) 
                 var data = new FormData();
                 var file = (onChangeEvent.srcElement || onChangeEvent.target).files[0];
                 data.append('file', file);
-                ngModelCtrl[0].$setViewValue(null);
+                ngModelCtrl[0].$setViewValue('');
                 $http.post('/api/common/upload', data, {
                   transformRequest: angular.identity,
                   headers: {'Content-Type': undefined}
