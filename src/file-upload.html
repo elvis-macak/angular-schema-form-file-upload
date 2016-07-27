@@ -1,13 +1,10 @@
 <div class="form-group" ng-class="{'has-error': hasError()}">
     <label class="control-label" ng-show="showTitle()">{{form.title}}</label>
     <div>
-        
-        <input ng-model="$$value$$" 
-               type="file"
-               on-read-file/>
-        
-        <span ng-show="$$value$$" class="bg-info">File URL: {{ $$value$$ }}</span>
-        <span ng-show="!$$value$$" class="bg-danger">It has not yet uploaded a file</span>
+
+        <input ng-model="$$value$$" type="file" on-read-file/>
+        <span ng-show="!$$value$$"><i class="fa fa-spinner"></i></span>
+        <span ng-show="$$value$$"><a ng-href="{{ $$value$$ }}" download>Click to download the file: </a></span>
     </div>
     <span class="help-block">{{ (hasError() && errorMessage(schemaError())) || form.description}}</span>
 </div>

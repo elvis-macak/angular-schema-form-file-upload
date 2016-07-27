@@ -18,7 +18,7 @@ angular.module('schemaForm').config(
                 'fileUpload',
                 'directives/decorators/bootstrap/fileUpload/file-upload.html'
             );
-            
+
             schemaFormDecoratorsProvider.createDirective(
                 'fileUpload',
                 'directives/decorators/bootstrap/fileUpload/file-upload.html'
@@ -35,6 +35,7 @@ angular.module('schemaForm').directive('onReadFile', ['$http', function ($http) 
                 var data = new FormData();
                 var file = (onChangeEvent.srcElement || onChangeEvent.target).files[0];
                 data.append('file', file);
+                ngModelCtrl[0].$setViewValue(null);
                 $http.post('/api/common/upload', data, {
                   transformRequest: angular.identity,
                   headers: {'Content-Type': undefined}
