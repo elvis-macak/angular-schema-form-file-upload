@@ -25,21 +25,23 @@ angular.module('schemaForm').config(
             );
   }]);
 
-angular.module('schemaForm').directive('onReadFile', function ($parse) {
+angular.module('schemaForm').directive('onReadFile', ['$http', function ($http) {
     return {
         restrict: 'A',
         require: ['ngModel'],
         scope: false,
         link: function (scope, element, attrs, ngModelCtrl) {
             element.on('change', function (onChangeEvent) {
-                var reader = new FileReader();
-                reader.onload = function (onLoadEvent) {
-                    // put into ngModel the file content.
-                    ngModelCtrl[0].$setViewValue(onLoadEvent.target.result);
-                    console.log(onLoadEvent.target);
-                };
-                reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
+                var data = new FormData();
+                var file = (onChangeEvent.srcElement || onChangeEvent.target).files[0];
+                data.append('file', file);
+                $http.post('/api/common/upload', data, {
+                  transformRequest: angular.identity,
+                  headers: {'Content-Type': undefined}
+                }).then(function(url){
+                    ngModelCtrl[0].$setViewValue(url);
+                });
             });
         }
     };
-});
+}]);
