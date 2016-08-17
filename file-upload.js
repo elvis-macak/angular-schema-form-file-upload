@@ -17,12 +17,12 @@ angular.module('schemaForm').config(
             schemaFormDecoratorsProvider.addMapping(
                 'bootstrapDecorator',
                 'fileUpload',
-                'static/views/_components/directives/fileUpload/file-upload.html'
+                'static/views/_components/directives/file-upload.html'
             );
 
             schemaFormDecoratorsProvider.createDirective(
                 'fileUpload',
-                'static/views/_components/directives/fileUpload/file-upload.html'
+                'static/views/_components/directives/file-upload.html'
             );
   }]);
 
