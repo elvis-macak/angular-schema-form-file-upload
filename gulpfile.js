@@ -19,7 +19,7 @@ gulp.task('minify', function() {
                   }))
                   .pipe(templateCache({
                     module: 'schemaForm',
-                    root: 'directives/decorators/bootstrap/fileUpload/'
+                    root: 'static/views/_components/directives/fileUpload/'
                   }))
     );
   stream.queue(gulp.src('./src/*.js'));
@@ -37,7 +37,7 @@ gulp.task('non-minified-dist', function() {
               gulp.src('./src/*.html')
                   .pipe(templateCache({
                     module: 'schemaForm',
-                    root: 'directives/decorators/bootstrap/fileUpload/'
+                    root: 'static/views/_components/directives/fileUpload/'
                   }))
     );
   stream.queue(gulp.src('./src/*.js'));
